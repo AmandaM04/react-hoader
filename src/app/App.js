@@ -8,8 +8,51 @@ import Login from '../components/Login/Login';
 import MyStuff from '../components/MyStuff/MyStuff';
 import Navbar from '../components/Navbar/Navbar';
 import Register from '../components/Register/Register';
+// import SingleItem from '../components/SingleItem/SingleItem';
+
+const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/mystuff', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const PublicRoute = ({ component: Component, authed, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed === false ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{ pathname: '/login', state: { from: props.location } }}
+          />
+        )
+      }
+    />
+  );
+};
 
 class App extends Component {
+  state = {
+    authed: false,
+  }
+
+  runAway = () => {
+    this.setState({authed: false});
+  }
+
   render () {
     return (
       <div className="App">
@@ -39,10 +82,10 @@ class App extends Component {
                     path="/mystuff"
                     authed={this.state.authed}
                     component={MyStuff} />
-                  <PrivateRoute
+                  {/* <PrivateRoute
                     path="/order/:id"
-                    authed={this.state.authed}
-                    component={SingleItem} />
+                    authed={this.state.authed} */}
+                  {/* // component={SingleItem} /> */}
                 </Switch>
               </div>
             </div>
