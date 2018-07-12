@@ -4,8 +4,14 @@ import './Items.css';
 
 class Items extends React.Components {
   render () {
+    const {details} = this.props;
+    const image = require(`${details.image}`);
     return (
-      <div className="Items">Items</div>
+      <li className="Items">
+        <img src={image} alt={details.name}/>
+        <h3 className="name">{details.name}</h3>
+        <p>{details.desc}</p>
+      </li>
     );
   }
 }
