@@ -4,7 +4,7 @@ import Items from '../Items/Items';
 
 import './AllTheStuff.css';
 
-class AllTheStuff extends React.Components {
+class AllTheStuff extends React.Component {
   state = {
     items: [],
   }
