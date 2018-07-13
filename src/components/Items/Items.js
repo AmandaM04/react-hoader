@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Items.css';
 
-class Items extends React.Components {
+class Items extends React.Component {
   render () {
     const {details} = this.props;
     const image = require(`${details.image}`);
