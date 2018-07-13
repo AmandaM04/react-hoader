@@ -1,19 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import authRequests from '../../firebaseRequest/auth';
+import authRequests from '../../firebaseRequest/auth';
 
 import './Login.css';
 
 class Login extends React.Component {
   state = {
     user: {
-      email: '',
-      password: '',
+      email: 'test123@gmail.com',
+      password: 'test123',
     },
   };
 
+  loginClickEvent = (e) => {
+    const { user } = this.state;
+    e.preventDefault();
+    authRequests
+      .loginUser(user)
+      .then(() => {
+        this.props.history.push('/mystuff');
+      })
+      .catch(error => {
+        console.error(error.message);
+      });
+  };
+
+  emailChange = e => {
+    const tempUser = { ...this.state.user };
+    tempUser.email = e.target.value;
+    this.setState({ user: tempUser });
+  };
+
+  passwordChange = e => {
+    const tempUser = { ...this.state.user };
+    tempUser.password = e.target.value;
+    this.setState({ user: tempUser });
+  };
+
   render () {
+    const { user } = this.state;
     return (
       <div className="Login">
         <div id="login-form">
@@ -29,6 +55,8 @@ class Login extends React.Component {
                   className="form-control"
                   id="inputEmail"
                   placeholder="Email"
+                  value={user.email}
+                  onChange={this.emailChange}
                 />
               </div>
             </div>
@@ -42,6 +70,8 @@ class Login extends React.Component {
                   className="form-control"
                   id="inputPassword"
                   placeholder="Password"
+                  value={user.password}
+                  onChange={this.passwordChange}
                 />
               </div>
             </div>
@@ -54,7 +84,9 @@ class Login extends React.Component {
               <div className="col-sm-12">
                 <button
                   type="submit"
-                  className="btn btn-default col-xs-12">
+                  className="btn btn-default col-xs-12"
+                  onClick={this.loginClickEvent}
+                >
                   Login
                 </button>
               </div>
