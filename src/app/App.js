@@ -24,7 +24,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
           <Component {...props} />
         ) : (
           <Redirect
-            to={{ pathname: '/mystuff', state: { from: props.location } }}
+            to={{ pathname: '/allthestuff', state: { from: props.location } }}
           />
         )
       }
@@ -87,7 +87,7 @@ class App extends Component {
                   <Route path="/" exact component={Home} />
                   <PrivateRoute
                     path="/allthestuff"
-                    authed={this.state.authed}
+                    authed={true}
                     component={AllTheStuff} />
                   <PublicRoute
                     path="/register"
@@ -102,7 +102,7 @@ class App extends Component {
                     authed={this.state.authed}
                     component={MyStuff} />
                   {/* <PrivateRoute
-                    path="/order/:id"
+                    path="/stuff/:id"
                     authed={this.state.authed} */}
                   {/* // component={SingleItem} /> */}
                 </Switch>
