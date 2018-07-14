@@ -1,0 +1,25 @@
+.Items {
+  border: 1px solid black;
+  // padding-bottom: 2rem;
+  // padding-top: 2rem;
+  // margin-bottom: 5px;
+  margin: auto;
+  clear: both;
+  overflow: hidden;
+  // p {
+  //   margin: 0;
+  //   font-size: 1.8rem;
+  // }
+  .name {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  img {
+    float: left;
+    width: 150px;
+    margin-right: 1rem;
+  }
+}

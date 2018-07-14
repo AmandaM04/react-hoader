@@ -1,5 +1,6 @@
 import React from 'react';
 
+import itemRequests from '../../firebaseRequest/allTheStuff';
 import Items from '../Items/Items';
 
 import './AllTheStuff.css';
@@ -7,6 +8,17 @@ import './AllTheStuff.css';
 class AllTheStuff extends React.Component {
   state = {
     items: [],
+  }
+
+  componentDidMount () {
+    itemRequests
+      .getRequest()
+      .then((items) => {
+        this.setState({ items });
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   }
 
   render () {

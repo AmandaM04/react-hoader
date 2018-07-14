@@ -5,12 +5,11 @@ import './Items.css';
 class Items extends React.Component {
   render () {
     const {details} = this.props;
-    const image = require(`${details.image}`);
     return (
       <li className="Items">
-        <img src={image} alt={details.name}/>
-        <h3 className="name">{details.name}</h3>
-        <p>{details.desc}</p>
+        <img src={details.itemImage} alt={details.itemName}/>
+        <h3 className="name">{details.itemName}</h3>
+        <p>{details.itemDescription}</p>
       </li>
     );
   }
